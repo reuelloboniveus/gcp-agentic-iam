@@ -1,7 +1,7 @@
 resource "google_firestore_database" "database" {
   count       = var.create_firestore_database ? 1 : 0
   project     = var.project_id
-  name        = "access-requests"
+  name        = var.firestore_database_name
   location_id = var.region
   type        = "FIRESTORE_NATIVE"
 
@@ -10,7 +10,7 @@ resource "google_firestore_database" "database" {
 }
 
 locals {
-  firestore_database_name = var.create_firestore_database ? google_firestore_database.database[0].name : "access-requests"
+  firestore_database_name = var.create_firestore_database ? google_firestore_database.database[0].name : var.firestore_database_name
 }
 
 # Automatically seed the first admin user

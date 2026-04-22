@@ -5,12 +5,27 @@ terraform {
       source  = "hashicorp/google"
       version = "~> 5.0"
     }
+    external = {
+      source  = "hashicorp/external"
+      version = "~> 2.3"
+    }
   }
 }
 
 provider "google" {
   project = var.project_id
   region  = var.region
+}
+
+data "external" "existing_resources" {
+  count   = var.auto_detect_existing_resources ? 1 : 0
+  program = ["powershell", "-ExecutionPolicy", "Bypass", "-File", "${path.module}/scripts/check_existing_resources.ps1"]
+
+  query = {
+    project_id              = var.project_id
+    firestore_database_name = var.firestore_database_name
+    request_topic_name      = var.request_topic_name
+  }
 }
 
 locals {
@@ -25,6 +40,11 @@ locals {
     "pubsub.googleapis.com",
     "run.googleapis.com"
   ])
+
+  firestore_db_exists    = var.auto_detect_existing_resources ? try(data.external.existing_resources[0].result.firestore_exists, "false") == "true" : false
+  request_topic_exists   = var.auto_detect_existing_resources ? try(data.external.existing_resources[0].result.topic_exists, "false") == "true" : false
+  create_firestore_final = var.create_firestore_database && !local.firestore_db_exists
+  create_topic_final     = var.create_request_topic && !local.request_topic_exists
 }
 
 resource "google_project_service" "required" {
@@ -49,7 +69,8 @@ module "database" {
   project_id                = var.project_id
   region                    = var.region
   admin_email               = var.iap_admin_email
-  create_firestore_database = var.create_firestore_database
+  firestore_database_name   = var.firestore_database_name
+  create_firestore_database = local.create_firestore_final
   depends_on                = [google_project_service.required]
 }
 
@@ -57,7 +78,7 @@ module "database" {
 module "pubsub" {
   source               = "./modules/pubsub"
   project_id           = var.project_id
-  create_request_topic = var.create_request_topic
+  create_request_topic = local.create_topic_final
   request_topic_name   = var.request_topic_name
   depends_on           = [google_project_service.required]
 }

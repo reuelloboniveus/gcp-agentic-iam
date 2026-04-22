@@ -36,6 +36,18 @@ variable "create_firestore_database" {
   default     = false
 }
 
+variable "firestore_database_name" {
+  description = "Firestore database name to create or reuse. Use (default) for standard Firestore."
+  type        = string
+  default     = "(default)"
+}
+
+variable "auto_detect_existing_resources" {
+  description = "If true, Terraform checks for existing Firestore DB and Pub/Sub topic and skips creating them when present."
+  type        = bool
+  default     = true
+}
+
 variable "create_request_topic" {
   description = "Whether Terraform should create the IAM request Pub/Sub topic. Set false if it already exists."
   type        = bool
