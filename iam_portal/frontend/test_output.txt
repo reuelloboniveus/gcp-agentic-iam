@@ -1,0 +1,243 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.5 [39m[90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mrenders main app even when /api/me fails
+[22m[39mFailed to fetch user Error: network
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:87:52
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at fetchUser [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:80:30[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:73:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mfalls back to sample data when requests API returns not-ok
+[22m[39mFailed to fetch user ReferenceError: fetch is not defined
+    at fetchUser [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:80:24[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:73:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15519:11[90m)[39m
+    at flushPassiveEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:18432:9[90m)[39m
+Failed to fetch requests, using sample data ReferenceError: fetch is not defined
+    at fetchRequests [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:45:24[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:74:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15519:11[90m)[39m
+    at flushPassiveEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:18432:9[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mfalls back to sample data when requests API throws
+[22m[39mFailed to fetch requests, using sample data Error: network
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:191:58
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at fetchRequests [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:45:30[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:74:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mfalls back to sample data when requests API throws
+[22m[39mFailed to fetch user ReferenceError: fetch is not defined
+    at fetchUser [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:80:24[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:73:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15519:11[90m)[39m
+    at flushPassiveEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:18432:9[90m)[39m
+Failed to fetch requests, using sample data ReferenceError: fetch is not defined
+    at fetchRequests [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:45:24[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:74:5
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15519:11[90m)[39m
+    at flushPassiveEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:18432:9[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mSave Changes falls back to local state update when PUT throws
+[22m[39mFailed to update request Error: fail
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:398:95
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at handleUpdate [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:164:30[90m)[39m
+    at executeDispatch [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19116:9[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at processDispatchQueue [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19166:19[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19767:9
+    at batchedUpdates$1 [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:3255:40[90m)[39m
+    at dispatchEventForPluginEventSystem [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19320:7[90m)[39m
+    at dispatchEvent [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:23585:11[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mhandleAction catch path updates local state optimistically
+[22m[39mFailed to approve request Error: net
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:447:88
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at handleAction [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:99:30[90m)[39m
+    at onClick [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:447:52[90m)[39m
+    at executeDispatch [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19116:9[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at processDispatchQueue [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19166:19[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19767:9
+    at batchedUpdates$1 [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:3255:40[90m)[39m
+    at dispatchEventForPluginEventSystem [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19320:7[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mhandleUserAction catch path does not crash on network error
+[22m[39mUser action failed Error: network
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:659:82
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at handleUserAction [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:122:26[90m)[39m
+    at onClick [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:583:48[90m)[39m
+    at executeDispatch [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19116:9[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at processDispatchQueue [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19166:19[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19767:9
+    at batchedUpdates$1 [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:3255:40[90m)[39m
+    at dispatchEventForPluginEventSystem [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:19320:7[90m)[39m
+
+[90mstderr[2m | src/App.test.jsx[2m > [22m[2mApp[2m > [22m[2mfetchUsers catch path does not crash when /api/users throws
+[22m[39mFailed to fetch users Error: users fail
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.test.jsx:676:71
+    at Mock [90m(file:///Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4m@vitest/spy[24m/dist/index.js:332:34[90m)[39m
+    at fetchUsers [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:62:30[90m)[39m
+    at [90m/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39msrc/App.jsx:75:33
+    at Object.react_stack_bottom_frame [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:25989:20[90m)[39m
+    at runWithFiberInDEV [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:874:13[90m)[39m
+    at commitHookEffectListMount [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13249:29[90m)[39m
+    at commitHookPassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:13336:11[90m)[39m
+    at commitPassiveMountOnFiber [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15484:13[90m)[39m
+    at recursivelyTraversePassiveMountEffects [90m(/Users/reuellobo/Documents/iam-google-adk/iam_portal/frontend/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom-client.development.js:15439:11[90m)[39m
+
+ [31m❯[39m src/App.test.jsx [2m([22m[2m80 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 3048[2mms[22m[39m
+     [32m✓[39m shows loading spinner while auth is pending[32m 15[2mms[22m[39m
+     [32m✓[39m hides spinner after auth resolves[32m 39[2mms[22m[39m
+     [32m✓[39m renders main app even when /api/me fails[32m 19[2mms[22m[39m
+     [32m✓[39m renders logo in sidebar[32m 15[2mms[22m[39m
+     [32m✓[39m shows Sign Out in sidebar[32m 13[2mms[22m[39m
+     [32m✓[39m logout navigates to IAP clear URL[32m 23[2mms[22m[39m
+     [32m✓[39m shows user email in top nav[32m 64[2mms[22m[39m
+     [32m✓[39m shows user initials avatar when photoURL is null[32m 29[2mms[22m[39m
+     [32m✓[39m shows user photo avatar when photoURL is set[32m 19[2mms[22m[39m
+     [32m✓[39m non-admin does not see User Management or Admin Settings[32m 21[2mms[22m[39m
+     [32m✓[39m admin sees User Management, Admin Settings, and Base Reference Data[32m 20[2mms[22m[39m
+     [32m✓[39m clicking Reporting switches view[32m 22[2mms[22m[39m
+     [32m✓[39m clicking Access Requests from Reporting returns to requests view[32m 97[2mms[22m[39m
+     [32m✓[39m admin clicks User Management and switches view[32m 32[2mms[22m[39m
+     [32m✓[39m renders table headers[32m 25[2mms[22m[39m
+     [32m✓[39m renders request rows returned from API[32m 16[2mms[22m[39m
+     [32m✓[39m falls back to sample data when requests API returns not-ok[32m 7[2mms[22m[39m
+     [32m✓[39m falls back to sample data when requests API throws[32m 8[2mms[22m[39m
+     [32m✓[39m shows empty state when no requests match the search[32m 105[2mms[22m[39m
+     [32m✓[39m filters rows by email search[32m 42[2mms[22m[39m
+     [32m✓[39m filters rows by project_id search[32m 75[2mms[22m[39m
+     [32m✓[39m filters rows by role search[32m 78[2mms[22m[39m
+     [32m✓[39m status filter Pending shows only pending rows[32m 77[2mms[22m[39m
+     [32m✓[39m status filter Approved shows approved rows[32m 63[2mms[22m[39m
+     [32m✓[39m status filter Declined shows declined rows[32m 63[2mms[22m[39m
+     [32m✓[39m status filter Error shows error rows[32m 58[2mms[22m[39m
+     [32m✓[39m status filter All resets to show all rows[32m 83[2mms[22m[39m
+     [32m✓[39m renders approved badge in green style[32m 6[2mms[22m[39m
+     [32m✓[39m renders actioned badge in green style[32m 6[2mms[22m[39m
+     [32m✓[39m renders complete badge in green style[32m 5[2mms[22m[39m
+     [32m✓[39m renders pending badge in outlined style[32m 6[2mms[22m[39m
+     [32m✓[39m renders draft badge in outlined style[32m 6[2mms[22m[39m
+     [32m✓[39m renders declined badge in red style[32m 4[2mms[22m[39m
+     [32m✓[39m renders revoked badge in red style[32m 5[2mms[22m[39m
+     [32m✓[39m renders error badge in red style[32m 6[2mms[22m[39m
+     [32m✓[39m renders unknown status badge with default style[32m 5[2mms[22m[39m
+     [32m✓[39m New Request button opens the modal[32m 68[2mms[22m[39m
+     [32m✓[39m Cancel in New Request modal closes it[32m 122[2mms[22m[39m
+     [32m✓[39m close icon in New Request modal closes it[32m 77[2mms[22m[39m
+     [32m✓[39m New Request modal save calls PUT and closes modal[32m 127[2mms[22m[39m
+     [32m✓[39m clicking row email button opens Edit Request modal[32m 73[2mms[22m[39m
+     [32m✓[39m edit modal is pre-filled with request data[32m 67[2mms[22m[39m
+     [32m✓[39m edit modal allows editing project_id[32m 66[2mms[22m[39m
+     [32m✓[39m edit modal allows editing role[32m 71[2mms[22m[39m
+     [32m✓[39m edit modal allows editing email[32m 69[2mms[22m[39m
+     [32m✓[39m edit modal shows raw_comments when present[32m 34[2mms[22m[39m
+     [32m✓[39m clicking project id cell also opens the edit modal[32m 28[2mms[22m[39m
+     [32m✓[39m Save Changes calls PUT endpoint and closes modal[32m 128[2mms[22m[39m
+     [32m✓[39m Save Changes falls back to local state update when PUT throws[32m 120[2mms[22m[39m
+     [32m✓[39m admin sees Approve and Decline buttons for pending rows[32m 14[2mms[22m[39m
+     [32m✓[39m non-admin does not see Approve/Decline buttons[32m 17[2mms[22m[39m
+     [32m✓[39m admin approving a request calls the approve endpoint and shows success notification[32m 24[2mms[22m[39m
+     [32m✓[39m admin declining a request calls the decline endpoint[32m 21[2mms[22m[39m
+     [32m✓[39m handleAction catch path updates local state optimistically[32m 18[2mms[22m[39m
+     [32m✓[39m notification auto-hides after 5 seconds[32m 31[2mms[22m[39m
+     [32m✓[39m reporting shows correct total count[32m 17[2mms[22m[39m
+[31m     [31m×[31m reporting shows Open Tickets (pending + error)[39m[32m 20[2mms[22m[39m
+     [32m✓[39m reporting shows Closed Tickets label[32m 19[2mms[22m[39m
+     [32m✓[39m reporting shows Errors stat card[32m 19[2mms[22m[39m
+     [32m✓[39m reporting shows Status Breakdown table with all rows[32m 20[2mms[22m[39m
+     [32m✓[39m reporting shows percentage of total[32m 20[2mms[22m[39m
+     [32m✓[39m toPercent returns 0% when there are no requests[32m 10[2mms[22m[39m
+     [32m✓[39m user management shows empty state when users list is empty[32m 18[2mms[22m[39m
+     [32m✓[39m user management lists users from API[32m 22[2mms[22m[39m
+     [32m✓[39m admin role badge uses blue style[32m 21[2mms[22m[39m
+     [32m✓[39m Make Admin button calls upsert with role=admin[32m 24[2mms[22m[39m
+     [32m✓[39m Make User button calls upsert with role=user[32m 24[2mms[22m[39m
+     [32m✓[39m delete enabled user calls DELETE endpoint[32m 23[2mms[22m[39m
+     [32m✓[39m delete button for own email is disabled[32m 20[2mms[22m[39m
+     [32m✓[39m handleUserAction shows success notification after upsert[32m 28[2mms[22m[39m
+     [32m✓[39m handleUserAction shows error detail when API returns error[32m 18[2mms[22m[39m
+     [32m✓[39m handleUserAction shows fallback "Action failed" when no detail in error[32m 16[2mms[22m[39m
+     [32m✓[39m handleUserAction catch path does not crash on network error[32m 14[2mms[22m[39m
+     [32m✓[39m fetchUsers catch path does not crash when /api/users throws[32m 10[2mms[22m[39m
+     [32m✓[39m Add User button opens the add user modal[32m 39[2mms[22m[39m
+     [32m✓[39m Grant Access button is disabled when email is empty[32m 60[2mms[22m[39m
+     [32m✓[39m typing email enables Grant Access and calls POST /api/users[32m 109[2mms[22m[39m
+     [32m✓[39m Cancel in Add User modal closes it[32m 61[2mms[22m[39m
+     [32m✓[39m Add User modal role selector can be changed to admin[32m 41[2mms[22m[39m
+     [32m✓[39m success notification has emerald styling[32m 20[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/App.test.jsx[2m > [22mApp[2m > [22mreporting shows Open Tickets (pending + error)
+[31m[1mTestingLibraryElementError[22m: Unable to find an element with the text: 2. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<div[31m
+  [33mclass[31m=[32m"text-[11px] uppercase tracking-wider text-slate-500 font-bold"[31m
+[36m>[31m
+  [0mOpen Tickets[0m
+[36m</div>[31m[39m
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/App.test.jsx:[2m501:32[22m[39m
+    [90m499|[39m     [90m// pending=1, error=1 → open=2[39m
+    [90m500|[39m     const openSection = screen.getByText('Open Tickets').closest('div'…
+    [90m501|[39m     [34mexpect[39m([34mwithin[39m(openSection)[33m.[39m[34mgetByText[39m([32m'2'[39m))[33m.[39m[34mtoBeInTheDocument[39m()[33m;[39m
+    [90m   |[39m                                [31m^[39m
+    [90m502|[39m   })[33m;[39m
+    [90m503|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m79 passed[39m[22m[90m (80)[39m
+[2m   Start at [22m 21:20:21
+[2m   Duration [22m 4.03s[2m (transform 86ms, setup 63ms, import 158ms, tests 3.05s, environment 533ms)[22m
+

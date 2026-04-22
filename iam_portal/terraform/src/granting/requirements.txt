@@ -1,0 +1,4 @@
+functions-framework
+google-cloud-firestore
+google-cloud-resource-manager
+google-api-python-client

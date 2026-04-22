@@ -1,0 +1,5 @@
+kind: compute#urlMap
+name: iam-portal-http-redirect
+defaultUrlRedirect:
+  redirectResponseCode: MOVED_PERMANENTLY_DEFAULT
+  httpsRedirect: true

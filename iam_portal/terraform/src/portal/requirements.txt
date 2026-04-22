@@ -1,0 +1,6 @@
+fastapi
+google-cloud-firestore
+pydantic
+pydantic-settings
+python-multipart
+functions-framework
