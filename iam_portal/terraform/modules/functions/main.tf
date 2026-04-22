@@ -1,7 +1,3 @@
-variable "project_id" { type = string }
-variable "region" { type = string }
-variable "service_account_id" { type = string }
-
 # --- Storage Bucket for Source ---
 resource "google_storage_bucket" "function_bucket" {
   name     = "${var.project_id}-function-source"
@@ -87,7 +83,21 @@ resource "google_cloudfunctions2_function" "granting_function" {
   event_trigger {
     trigger_region = var.region
     event_type     = "google.cloud.firestore.document.v1.updated"
-    resource       = "projects/${var.project_id}/databases/(default)/documents/iam_requests/{requestId}"
+    event_filters {
+      attribute = "database"
+      value     = "(default)"
+    }
+
+    event_filters {
+      attribute = "namespace"
+      value     = "(default)"
+    }
+
+    event_filters {
+      attribute = "document"
+      operator  = "match-path-pattern"
+      value     = "iam_requests/{requestId}"
+    }
   }
 }
 

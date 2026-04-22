@@ -1,6 +1,3 @@
-variable "project_id" { type = string }
-variable "region" { type = string }
-
 resource "google_firestore_database" "database" {
   project     = var.project_id
   name        = "access-requests" # Or "(default)" if they prefer

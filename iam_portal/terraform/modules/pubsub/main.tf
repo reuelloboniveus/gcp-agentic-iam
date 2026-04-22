@@ -1,5 +1,3 @@
-variable "project_id" { type = string }
-
 resource "google_pubsub_topic" "request_topic" {
   name = "iam-request-topic"
 }
