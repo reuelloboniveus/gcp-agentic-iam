@@ -32,15 +32,13 @@ resource "google_compute_backend_service" "portal_backend" {
 }
 
 # --- IAP Branding & Client ---
-resource "google_iap_brand" "project_brand" {
-  support_email     = var.iap_admin_email
-  application_title = "IAM Portal"
-  project           = var.project_id
+data "google_project" "current" {
+  project_id = var.project_id
 }
 
 resource "google_iap_client" "project_client" {
   display_name = "IAM Portal Client"
-  brand        = google_iap_brand.project_brand.name
+  brand        = "projects/${data.google_project.current.number}/brands/${data.google_project.current.number}"
 }
 
 # --- IAP IAM Policy ---
