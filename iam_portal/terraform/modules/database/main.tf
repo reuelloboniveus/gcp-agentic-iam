@@ -1,6 +1,7 @@
 resource "google_firestore_database" "database" {
+  count       = var.create_firestore_database ? 1 : 0
   project     = var.project_id
-  name        = "access-requests" # Or "(default)" if they prefer
+  name        = "access-requests"
   location_id = var.region
   type        = "FIRESTORE_NATIVE"
 
@@ -8,10 +9,14 @@ resource "google_firestore_database" "database" {
   deletion_policy = "DELETE"
 }
 
+locals {
+  firestore_database_name = var.create_firestore_database ? google_firestore_database.database[0].name : "access-requests"
+}
+
 # Automatically seed the first admin user
 resource "google_firestore_document" "admin_user" {
   project     = var.project_id
-  database    = google_firestore_database.database.name
+  database    = local.firestore_database_name
   collection  = "portal_users"
   document_id = var.admin_email
   fields      = jsonencode({
@@ -21,5 +26,5 @@ resource "google_firestore_document" "admin_user" {
 }
 
 output "database_name" {
-  value = google_firestore_database.database.name
+  value = local.firestore_database_name
 }
