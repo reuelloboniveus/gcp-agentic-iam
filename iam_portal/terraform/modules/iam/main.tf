@@ -37,6 +37,13 @@ resource "google_project_iam_member" "vertex_ai" {
   member  = "serviceAccount:${local.service_account_email}"
 }
 
+# Required for Cloud Functions 2nd gen Eventarc triggers
+resource "google_project_iam_member" "eventarc_event_receiver" {
+  project = var.project_id
+  role    = "roles/eventarc.eventReceiver"
+  member  = "serviceAccount:${local.service_account_email}"
+}
+
 output "service_account_email" {
   value = local.service_account_email
 }
