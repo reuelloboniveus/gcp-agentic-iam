@@ -36,6 +36,10 @@ FORCE_DEPLOY_FUNCTIONS="${FORCE_DEPLOY_FUNCTIONS:-false}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 IAM_PORTAL_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SRC_BASE_DIR="${IAM_PORTAL_DIR}/terraform/src"
+FRONTEND_DIR="${IAM_PORTAL_DIR}/frontend"
+PORTAL_SOURCE_DIR="${SRC_BASE_DIR}/portal"
+
+TEMP_DIR=""
 
 PORTAL_FN_NAME="iam-portal"
 GRANTING_FN_NAME="iam-granting"
@@ -152,8 +156,37 @@ ensure_project_role_binding() {
   fi
 }
 
+cleanup() {
+  if [[ -n "$TEMP_DIR" && -d "$TEMP_DIR" ]]; then
+    rm -rf "$TEMP_DIR"
+  fi
+}
+
+prepare_portal_source() {
+  require_cmd npm
+
+  log "Building frontend assets for portal"
+  (
+    cd "$FRONTEND_DIR"
+    npm install
+    npm run build
+  )
+
+  [[ -f "${FRONTEND_DIR}/dist/index.html" ]] || die "Frontend build failed: dist/index.html not found"
+
+  TEMP_DIR="$(mktemp -d)"
+  cp "${PORTAL_SOURCE_DIR}/main.py" "$TEMP_DIR/"
+  cp "${PORTAL_SOURCE_DIR}/api.py" "$TEMP_DIR/"
+  cp "${PORTAL_SOURCE_DIR}/requirements.txt" "$TEMP_DIR/"
+  mkdir -p "$TEMP_DIR/frontend"
+  cp -R "${FRONTEND_DIR}/dist" "$TEMP_DIR/frontend/"
+
+  printf '%s\n' "$TEMP_DIR"
+}
+
 require_cmd gcloud
 require_cmd curl
+trap cleanup EXIT
 
 prompt_if_empty PROJECT_ID "Enter PROJECT_ID"
 prompt_if_empty REGION "Enter REGION"
@@ -244,13 +277,14 @@ fi
 if gcloud functions describe "$PORTAL_FN_NAME" --gen2 --region "$REGION" --project "$PROJECT_ID" >/dev/null 2>&1 && [[ "$FORCE_DEPLOY_FUNCTIONS" != "true" ]]; then
   log "Function ${PORTAL_FN_NAME} already exists. Skipping."
 else
+  PORTAL_DEPLOY_SOURCE="$(prepare_portal_source)"
   log "Deploying function ${PORTAL_FN_NAME}"
   gcloud functions deploy "$PORTAL_FN_NAME" \
     --gen2 \
     --region "$REGION" \
     --runtime python311 \
     --entry-point portal \
-    --source "${SRC_BASE_DIR}/portal" \
+    --source "$PORTAL_DEPLOY_SOURCE" \
     --trigger-http \
     --service-account "$SERVICE_ACCOUNT_EMAIL" \
     --ingress-settings internal-and-gclb \
