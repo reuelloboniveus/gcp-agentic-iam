@@ -13,6 +13,10 @@ provider "google" {
   region  = var.region
 }
 
+data "google_project" "current" {
+  project_id = var.project_id
+}
+
 locals {
   required_apis = toset([
     "artifactregistry.googleapis.com",
@@ -32,6 +36,14 @@ resource "google_project_service" "required" {
   project            = var.project_id
   service            = each.value
   disable_on_destroy = false
+}
+
+resource "google_project_iam_member" "eventarc_service_agent_role" {
+  project = var.project_id
+  role    = "roles/eventarc.serviceAgent"
+  member  = "serviceAccount:service-${data.google_project.current.number}@gcp-sa-eventarc.iam.gserviceaccount.com"
+
+  depends_on = [google_project_service.required]
 }
 
 # --- IAM Module ---
@@ -72,7 +84,7 @@ module "functions" {
   request_topic_id    = module.pubsub.topic_id
   firestore_database_name = var.firestore_database_name
   function_source_bucket_name = var.function_source_bucket_name
-  depends_on          = [module.iam, module.database, module.pubsub]
+  depends_on          = [module.iam, module.database, module.pubsub, google_project_iam_member.eventarc_service_agent_role]
 }
 
 # --- Networking Module ---
