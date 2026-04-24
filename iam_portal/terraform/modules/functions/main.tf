@@ -1,6 +1,8 @@
 # --- Storage Bucket for Source ---
 locals {
-  source_bucket_name = trimspace(var.function_source_bucket_name) != "" ? trimspace(var.function_source_bucket_name) : "${var.project_id}-function-source"
+  requested_source_bucket_name = trimspace(var.function_source_bucket_name)
+  candidate_source_bucket_name = local.requested_source_bucket_name != "" ? local.requested_source_bucket_name : "${var.project_id}-function-source"
+  source_bucket_name           = lower(replace(replace(replace(replace(local.candidate_source_bucket_name, "\t", ""), "\\t", ""), " ", ""), "\"", ""))
 }
 
 resource "google_storage_bucket" "function_bucket" {
