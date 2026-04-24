@@ -20,7 +20,7 @@ data "archive_file" "portal_source" {
 
 resource "google_storage_bucket_object" "portal_zip" {
   name   = "portal-${data.archive_file.portal_source.output_md5}.zip"
-  bucket = local.source_bucket_name
+  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
   source = data.archive_file.portal_source.output_path
 }
 
@@ -58,7 +58,7 @@ data "archive_file" "granting_source" {
 
 resource "google_storage_bucket_object" "granting_zip" {
   name   = "granting-${data.archive_file.granting_source.output_md5}.zip"
-  bucket = local.source_bucket_name
+  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
   source = data.archive_file.granting_source.output_path
 }
 
@@ -116,7 +116,7 @@ data "archive_file" "parser_source" {
 
 resource "google_storage_bucket_object" "parser_zip" {
   name   = "parser-${data.archive_file.parser_source.output_md5}.zip"
-  bucket = local.source_bucket_name
+  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
   source = data.archive_file.parser_source.output_path
 }
 
