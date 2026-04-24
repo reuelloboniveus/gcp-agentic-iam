@@ -40,6 +40,7 @@ FRONTEND_DIR="${IAM_PORTAL_DIR}/frontend"
 PORTAL_SOURCE_DIR="${SRC_BASE_DIR}/portal"
 
 TEMP_DIR=""
+PORTAL_DEPLOY_SOURCE=""
 
 PORTAL_FN_NAME="iam-portal"
 GRANTING_FN_NAME="iam-granting"
@@ -181,7 +182,7 @@ prepare_portal_source() {
   mkdir -p "$TEMP_DIR/frontend"
   cp -R "${FRONTEND_DIR}/dist" "$TEMP_DIR/frontend/"
 
-  printf '%s\n' "$TEMP_DIR"
+  PORTAL_DEPLOY_SOURCE="$TEMP_DIR"
 }
 
 require_cmd gcloud
@@ -277,7 +278,7 @@ fi
 if gcloud functions describe "$PORTAL_FN_NAME" --gen2 --region "$REGION" --project "$PROJECT_ID" >/dev/null 2>&1 && [[ "$FORCE_DEPLOY_FUNCTIONS" != "true" ]]; then
   log "Function ${PORTAL_FN_NAME} already exists. Skipping."
 else
-  PORTAL_DEPLOY_SOURCE="$(prepare_portal_source)"
+  prepare_portal_source
   log "Deploying function ${PORTAL_FN_NAME}"
   gcloud functions deploy "$PORTAL_FN_NAME" \
     --gen2 \
