@@ -18,6 +18,25 @@ variable "iap_admin_email" {
   type        = string
 }
 
+variable "enable_iap" {
+  description = "Enable IAP on the HTTPS backend. Keep false until an Internal OAuth brand is available."
+  type        = bool
+  default     = false
+}
+
+variable "iap_oauth_client_id" {
+  description = "Existing OAuth client ID to use for IAP. Leave empty to let Terraform create one when enable_iap=true."
+  type        = string
+  default     = ""
+}
+
+variable "iap_oauth_client_secret" {
+  description = "Existing OAuth client secret to use for IAP. Leave empty to let Terraform create one when enable_iap=true."
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
 variable "existing_service_account_email" {
   description = "Existing service account email to reuse. Leave empty to create iam-portal-sa."
   type        = string

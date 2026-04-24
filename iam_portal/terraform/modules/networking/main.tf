@@ -3,6 +3,26 @@ variable "region" { type = string }
 variable "domain" { type = string }
 variable "portal_function_name" { type = string }
 variable "iap_admin_email" { type = string }
+variable "enable_iap" {
+  type    = bool
+  default = false
+}
+variable "iap_oauth_client_id" {
+  type    = string
+  default = ""
+}
+variable "iap_oauth_client_secret" {
+  type      = string
+  default   = ""
+  sensitive = true
+}
+
+locals {
+  use_existing_iap_client = trimspace(var.iap_oauth_client_id) != "" && trimspace(var.iap_oauth_client_secret) != ""
+  create_iap_client       = var.enable_iap && !local.use_existing_iap_client
+  iap_client_id           = local.use_existing_iap_client ? var.iap_oauth_client_id : (local.create_iap_client ? google_iap_client.project_client[0].client_id : null)
+  iap_client_secret       = local.use_existing_iap_client ? var.iap_oauth_client_secret : (local.create_iap_client ? google_iap_client.project_client[0].secret : null)
+}
 
 # --- Serverless NEG ---
 resource "google_compute_region_network_endpoint_group" "portal_neg" {
@@ -25,9 +45,12 @@ resource "google_compute_backend_service" "portal_backend" {
     group = google_compute_region_network_endpoint_group.portal_neg.id
   }
 
-  iap {
-    oauth2_client_id     = google_iap_client.project_client.client_id
-    oauth2_client_secret = google_iap_client.project_client.secret
+  dynamic "iap" {
+    for_each = var.enable_iap ? [1] : []
+    content {
+      oauth2_client_id     = local.iap_client_id
+      oauth2_client_secret = local.iap_client_secret
+    }
   }
 }
 
@@ -37,12 +60,14 @@ data "google_project" "current" {
 }
 
 resource "google_iap_client" "project_client" {
+  count        = local.create_iap_client ? 1 : 0
   display_name = "IAM Portal Client"
   brand        = "projects/${data.google_project.current.number}/brands/${data.google_project.current.number}"
 }
 
 # --- IAP IAM Policy ---
 resource "google_iap_web_backend_service_iam_member" "iap_admin" {
+  count = var.enable_iap ? 1 : 0
   project = var.project_id
   web_backend_service = google_compute_backend_service.portal_backend.name
   role = "roles/iap.httpsResourceAccessor"

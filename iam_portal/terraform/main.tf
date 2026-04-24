@@ -95,5 +95,8 @@ module "networking" {
   domain             = var.domain
   portal_function_name = module.functions.portal_function_name
   iap_admin_email    = var.iap_admin_email
+  enable_iap         = var.enable_iap
+  iap_oauth_client_id     = var.iap_oauth_client_id
+  iap_oauth_client_secret = var.iap_oauth_client_secret
   depends_on         = [module.functions]
 }
