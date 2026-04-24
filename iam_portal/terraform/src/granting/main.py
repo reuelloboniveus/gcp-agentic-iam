@@ -5,7 +5,10 @@ from datetime import datetime
 import os
 
 # Initialize Firestore
-db = firestore.Client(project=os.getenv("GOOGLE_CLOUD_PROJECT"))
+db = firestore.Client(
+    project=os.getenv("GOOGLE_CLOUD_PROJECT"),
+    database=os.getenv("FIRESTORE_DATABASE_ID", "iam-access")
+)
 COLLECTION_NAME = "iam_requests"
 
 def grant_project_iam_access(project_id: str, member: str, role: str):

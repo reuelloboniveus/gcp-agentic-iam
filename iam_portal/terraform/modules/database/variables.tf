@@ -3,7 +3,7 @@ variable "region" { type = string }
 variable "admin_email" { type = string }
 variable "firestore_database_name" {
 	type    = string
-	default = "(default)"
+	default = "iam-access"
 }
 variable "create_firestore_database" {
 	type    = bool

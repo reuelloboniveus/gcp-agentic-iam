@@ -70,6 +70,7 @@ module "functions" {
   region              = var.region
   service_account_id  = module.iam.service_account_email
   request_topic_id    = module.pubsub.topic_id
+  firestore_database_name = var.firestore_database_name
   function_source_bucket_name = var.function_source_bucket_name
   depends_on          = [module.iam, module.database, module.pubsub]
 }

@@ -1,5 +1,6 @@
 import base64
 import json
+import os
 import functions_framework
 from google.cloud import firestore
 from datetime import datetime
@@ -8,7 +9,7 @@ from google import genai
 # Config
 PROJECT_ID = "prj-int-test-edg-cloudops-23"
 LOCATION = "us-central1"
-DATABASE_ID = "access-requests"
+DATABASE_ID = os.getenv("FIRESTORE_DATABASE_ID", "iam-access")
 COLLECTION = "iam_requests"
 
 # Initialize clients

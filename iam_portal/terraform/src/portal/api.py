@@ -32,7 +32,7 @@ async def log_iap_headers(request: Request, call_next):
 # Initialize Firestore
 db = firestore.Client(
     project=os.getenv("GOOGLE_CLOUD_PROJECT", "prj-int-test-edg-cloudops-23"),
-    database="access-requests"
+    database=os.getenv("FIRESTORE_DATABASE_ID", "iam-access")
 )
 COLLECTION_NAME = "iam_requests"
 USER_ROLES_COLLECTION = "portal_users"

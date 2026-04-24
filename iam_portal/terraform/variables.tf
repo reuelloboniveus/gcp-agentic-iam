@@ -33,13 +33,13 @@ variable "cloud_run_service_account_id" {
 variable "create_firestore_database" {
   description = "Whether Terraform should create the Firestore database. Set false when the database already exists."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "firestore_database_name" {
-  description = "Firestore database name to create or reuse. Use (default) for standard Firestore."
+  description = "Firestore database name to create or reuse."
   type        = string
-  default     = "(default)"
+  default     = "iam-access"
 }
 
 variable "create_request_topic" {

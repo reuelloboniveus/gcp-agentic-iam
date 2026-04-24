@@ -51,6 +51,9 @@ resource "google_cloudfunctions2_function" "portal_function" {
     timeout_seconds    = 60
     service_account_email = var.service_account_id
     ingress_settings = "ALLOW_INTERNAL_AND_GCLB"
+    environment_variables = {
+      FIRESTORE_DATABASE_ID = var.firestore_database_name
+    }
   }
 }
 
@@ -91,6 +94,9 @@ resource "google_cloudfunctions2_function" "granting_function" {
     timeout_seconds    = 120
     service_account_email = var.service_account_id
     ingress_settings = "ALLOW_INTERNAL_ONLY"
+    environment_variables = {
+      FIRESTORE_DATABASE_ID = var.firestore_database_name
+    }
   }
 
   event_trigger {
@@ -98,7 +104,7 @@ resource "google_cloudfunctions2_function" "granting_function" {
     event_type     = "google.cloud.firestore.document.v1.updated"
     event_filters {
       attribute = "database"
-      value     = "(default)"
+      value     = var.firestore_database_name
     }
 
     event_filters {
@@ -151,6 +157,9 @@ resource "google_cloudfunctions2_function" "parser_function" {
     timeout_seconds    = 60
     service_account_email = var.service_account_id
     ingress_settings = "ALLOW_INTERNAL_ONLY"
+    environment_variables = {
+      FIRESTORE_DATABASE_ID = var.firestore_database_name
+    }
   }
 
   event_trigger {
