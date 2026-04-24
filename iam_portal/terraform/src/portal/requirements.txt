@@ -1,4 +1,5 @@
 fastapi
+httpx
 google-cloud-firestore
 pydantic
 pydantic-settings
