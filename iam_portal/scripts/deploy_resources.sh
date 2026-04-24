@@ -106,6 +106,52 @@ safe_create() {
   fi
 }
 
+binding_exists() {
+  local project_id="$1"
+  local member="$2"
+  local role="$3"
+
+  gcloud projects get-iam-policy "$project_id" \
+    --flatten="bindings[].members" \
+    --filter="bindings.role=${role} AND bindings.members=${member}" \
+    --format='value(bindings.role)' | grep -q .
+}
+
+ensure_project_role_binding() {
+  local project_id="$1"
+  local member="$2"
+  local role="$3"
+
+  if binding_exists "$project_id" "$member" "$role"; then
+    log "Binding already present: ${role} -> ${member}. Skipping."
+    return
+  fi
+
+  log "Grant ${role} to ${member}"
+  set +e
+  gcloud projects add-iam-policy-binding "$project_id" \
+    --member "$member" \
+    --role "$role" \
+    --condition=None \
+    --quiet
+  local rc=$?
+
+  if [[ $rc -ne 0 ]]; then
+    # Some gcloud variants accept '--condition None' instead of '--condition=None'.
+    gcloud projects add-iam-policy-binding "$project_id" \
+      --member "$member" \
+      --role "$role" \
+      --condition None \
+      --quiet
+    rc=$?
+  fi
+  set -e
+
+  if [[ $rc -ne 0 ]] || ! binding_exists "$project_id" "$member" "$role"; then
+    die "Failed to grant ${role} to ${member}."
+  fi
+}
+
 require_cmd gcloud
 require_cmd curl
 
@@ -159,18 +205,10 @@ for role in \
   roles/resourcemanager.projectIamAdmin \
   roles/aiplatform.user \
   roles/eventarc.eventReceiver; do
-  safe_create "Grant ${role} to ${SERVICE_ACCOUNT_EMAIL}" \
-    gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-      --member "serviceAccount:${SERVICE_ACCOUNT_EMAIL}" \
-      --role "$role" \
-      --quiet
+  ensure_project_role_binding "$PROJECT_ID" "serviceAccount:${SERVICE_ACCOUNT_EMAIL}" "$role"
 done
 
-safe_create "Grant Eventarc service agent role to ${EVENTARC_AGENT}" \
-  gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-    --member "serviceAccount:${EVENTARC_AGENT}" \
-    --role roles/eventarc.serviceAgent \
-    --quiet
+ensure_project_role_binding "$PROJECT_ID" "serviceAccount:${EVENTARC_AGENT}" "roles/eventarc.serviceAgent"
 
 log "Creating Firestore database ${FIRESTORE_DATABASE_NAME} (if missing)"
 if ! gcloud firestore databases describe --database="$FIRESTORE_DATABASE_NAME" --project "$PROJECT_ID" >/dev/null 2>&1; then
