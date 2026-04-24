@@ -10,4 +10,3 @@ create_request_topic           = true
 request_topic_name             = "iam-request-topic"
 create_function_source_bucket  = true
 function_source_bucket_name    = ""
-auto_detect_existing_resources = true
