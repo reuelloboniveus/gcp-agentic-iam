@@ -79,6 +79,12 @@ require_cmd() {
   command -v "$1" >/dev/null 2>&1 || die "Missing command: $1"
 }
 
+require_gcloud_auth() {
+  local active_account
+  active_account="$(gcloud auth list --filter=status:ACTIVE --format='value(account)' 2>/dev/null || true)"
+  [[ -n "$active_account" ]] || die "No active gcloud account. Run: gcloud auth login"
+}
+
 require_env() {
   local name="$1"
   [[ -n "${!name:-}" ]] || die "Required env var not set: $name"
@@ -187,6 +193,7 @@ prepare_portal_source() {
 
 require_cmd gcloud
 require_cmd curl
+require_gcloud_auth
 trap cleanup EXIT
 
 prompt_if_empty PROJECT_ID "Enter PROJECT_ID"
