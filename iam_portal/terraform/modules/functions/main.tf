@@ -4,11 +4,14 @@ locals {
 }
 
 resource "google_storage_bucket" "function_bucket" {
-  count    = var.create_function_source_bucket ? 1 : 0
   name     = local.source_bucket_name
   location = var.region
   uniform_bucket_level_access = true
   force_destroy = true
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 # --- Portal Function ---
@@ -20,8 +23,10 @@ data "archive_file" "portal_source" {
 
 resource "google_storage_bucket_object" "portal_zip" {
   name   = "portal-${data.archive_file.portal_source.output_md5}.zip"
-  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
+  bucket = google_storage_bucket.function_bucket.name
   source = data.archive_file.portal_source.output_path
+
+  depends_on = [google_storage_bucket.function_bucket]
 }
 
 resource "google_cloudfunctions2_function" "portal_function" {
@@ -34,7 +39,7 @@ resource "google_cloudfunctions2_function" "portal_function" {
     entry_point = "portal"
     source {
       storage_source {
-        bucket = local.source_bucket_name
+        bucket = google_storage_bucket.function_bucket.name
         object = google_storage_bucket_object.portal_zip.name
       }
     }
@@ -58,8 +63,10 @@ data "archive_file" "granting_source" {
 
 resource "google_storage_bucket_object" "granting_zip" {
   name   = "granting-${data.archive_file.granting_source.output_md5}.zip"
-  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
+  bucket = google_storage_bucket.function_bucket.name
   source = data.archive_file.granting_source.output_path
+
+  depends_on = [google_storage_bucket.function_bucket]
 }
 
 resource "google_cloudfunctions2_function" "granting_function" {
@@ -72,7 +79,7 @@ resource "google_cloudfunctions2_function" "granting_function" {
     entry_point = "process_iam_grant"
     source {
       storage_source {
-        bucket = local.source_bucket_name
+        bucket = google_storage_bucket.function_bucket.name
         object = google_storage_bucket_object.granting_zip.name
       }
     }
@@ -116,8 +123,10 @@ data "archive_file" "parser_source" {
 
 resource "google_storage_bucket_object" "parser_zip" {
   name   = "parser-${data.archive_file.parser_source.output_md5}.zip"
-  bucket = var.create_function_source_bucket ? google_storage_bucket.function_bucket[0].name : local.source_bucket_name
+  bucket = google_storage_bucket.function_bucket.name
   source = data.archive_file.parser_source.output_path
+
+  depends_on = [google_storage_bucket.function_bucket]
 }
 
 resource "google_cloudfunctions2_function" "parser_function" {
@@ -130,7 +139,7 @@ resource "google_cloudfunctions2_function" "parser_function" {
     entry_point = "process_iam_request"
     source {
       storage_source {
-        bucket = local.source_bucket_name
+        bucket = google_storage_bucket.function_bucket.name
         object = google_storage_bucket_object.parser_zip.name
       }
     }

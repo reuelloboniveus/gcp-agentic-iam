@@ -54,14 +54,8 @@ variable "request_topic_name" {
   default     = "iam-request-topic"
 }
 
-variable "create_function_source_bucket" {
-  description = "Whether Terraform should create the Cloud Functions source bucket. Set false if it already exists."
-  type        = bool
-  default     = true
-}
-
 variable "function_source_bucket_name" {
-  description = "Existing or desired Cloud Functions source bucket name. Leave empty to use <project>-function-source."
+  description = "Cloud Functions source bucket name. Leave empty to use <project>-function-source."
   type        = string
   default     = ""
 }

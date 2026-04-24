@@ -65,14 +65,13 @@ module "pubsub" {
 
 # --- Functions Module ---
 module "functions" {
-  source                        = "./modules/functions"
-  project_id                    = var.project_id
-  region                        = var.region
-  service_account_id            = module.iam.service_account_email
-  request_topic_id              = module.pubsub.topic_id
-  create_function_source_bucket = var.create_function_source_bucket
-  function_source_bucket_name   = var.function_source_bucket_name
-  depends_on                    = [module.iam, module.database, module.pubsub]
+  source              = "./modules/functions"
+  project_id          = var.project_id
+  region              = var.region
+  service_account_id  = module.iam.service_account_email
+  request_topic_id    = module.pubsub.topic_id
+  function_source_bucket_name = var.function_source_bucket_name
+  depends_on          = [module.iam, module.database, module.pubsub]
 }
 
 # --- Networking Module ---

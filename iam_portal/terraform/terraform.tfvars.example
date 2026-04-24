@@ -8,5 +8,4 @@ create_firestore_database      = false
 firestore_database_name        = "(default)"
 create_request_topic           = true
 request_topic_name             = "iam-request-topic"
-create_function_source_bucket  = true
 function_source_bucket_name    = ""
